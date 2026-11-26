@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoices</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    table { border-collapse: collapse; width: 100%; max-width: 700px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f2f2f2; }
+    .paid { color: green; font-weight: bold; }
+    .unpaid { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>All Invoices</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Invoice #</th>
+        <th>Customer</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for invoice in all_invoices %}
+      <tr>
+        <td>{{ invoice.invoice_number }}</td>
+        <td>{{ invoice.customer_name }}</td>
+        <td>₹{{ invoice.amount|floatformat:2 }}</td>
+        <td>
+          {% if invoice.is_paid %}
+            <span class="paid">Paid</span>
+          {% else %}
+            <span class="unpaid">Unpaid</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4">No invoices found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

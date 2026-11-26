@@ -1,0 +1,8 @@
+step-1
+create  a box
+python 3 -m venv
+ 
+step-2
+inside box
+step -3
+install jango
